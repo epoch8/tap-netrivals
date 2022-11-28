@@ -37,13 +37,8 @@ class netrivalsStream(RESTStream):
         """Return a new authenticator object."""
         return APIKeyAuthenticator.create_for_stream(
             self,
-            # key="x-api-key",
             key="api_key",
-            # value=self.config.get("api_key"),
-            # value=self.config.get("auth_token"),
             value=self.config.get("api_key"),
-            # value=r"$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm",
-            # location="header"
             location="params"
         )
 

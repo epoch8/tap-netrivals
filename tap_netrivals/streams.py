@@ -67,3 +67,33 @@ class PrivateProductsStream(netrivalsStream):
         # th.Property("public_product_max_price", th.IntegerType)
         th.Property("public_product_max_price", th.NumberType)
     ).to_dict()
+
+
+class PublicProductsStream(netrivalsStream):
+    name = "public_products"
+    path = r"/bi/v1/public/products"
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("store_id", th.IntegerType),
+        th.Property("code", th.StringType),
+        th.Property("subcode", th.StringType),
+        th.Property("country_code", th.StringType),
+        th.Property("currency", th.StringType),
+        th.Property("title", th.StringType),
+        th.Property("product_variant", th.StringType),
+        th.Property("price", th.NumberType),
+        th.Property("shipping", th.NumberType),
+        th.Property("stock", th.NumberType),
+        th.Property("stock_quantity", th.NumberType),
+        th.Property("url", th.StringType),
+        th.Property("image", th.StringType),
+        th.Property("detection_date", th.StringType),
+        th.Property("detection_timestamp", th.IntegerType),
+        th.Property("update_date", th.StringType),
+        th.Property("update_timestamp", th.IntegerType),
+        th.Property("last_failure_date", th.StringType),
+        th.Property("last_failure_timestamp", th.IntegerType)
+    ).to_dict()
