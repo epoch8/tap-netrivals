@@ -97,3 +97,17 @@ class PublicProductsStream(netrivalsStream):
         th.Property("last_failure_date", th.StringType),
         th.Property("last_failure_timestamp", th.IntegerType)
     ).to_dict()
+
+
+class ConnectionsStream(netrivalsStream):
+    name = "connections"
+    path = r"/bi/v1/connections"
+    primary_keys = ["private_product_id", "public_product_id", "connection_timestamp"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("private_product_id", th.StringType),
+        th.Property("public_product_id", th.StringType),
+        th.Property("connection_date", th.StringType),
+        th.Property("connection_timestamp", th.StringType)
+    ).to_dict()

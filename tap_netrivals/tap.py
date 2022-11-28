@@ -9,14 +9,16 @@ from tap_netrivals.streams import (
     # netrivalsStream,
     # PrivateStoresStream,
     # PrivateProductsStream,
-    PublicProductsStream
+    # PublicProductsStream,
+    ConnectionsStream
 )
 # TODO: Compile a list of custom stream types here
 #       OR rewrite discover_streams() below with your custom logic.
 STREAM_TYPES = [
     # PrivateStoresStream,
     # PrivateProductsStream,
-    PublicProductsStream
+    # PublicProductsStream,
+    ConnectionsStream
 ]
 
 
