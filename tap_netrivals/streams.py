@@ -9,114 +9,61 @@ from tap_netrivals.client import netrivalsStream
 
 # TODO: Delete this is if not using json files for schema definition
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
+
 # TODO: - Override `UsersStream` and `GroupsStream` with your own stream definition.
 #       - Copy-paste as many times as needed to create multiple stream types.
 
 
-# class UsersStream(netrivalsStream):
 class PrivateStoresStream(netrivalsStream):
-    """Define custom stream."""
-    # name = "users"
     name = "private_stores"
-    # path = "/users"
     path = r"/bi/v1/private/stores"
-    # path = r"https://endpoint.netrivals.com/bi/v1/private/stores"
-    # path = "/bi/v1/private/stores?api_key=$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm"
-    # primary_keys = ["id"]
     primary_keys = ["private_store_id"]
     replication_key = None
+
     # Optionally, you may also use `schema_filepath` in place of `schema`:
     # schema_filepath = SCHEMAS_DIR / "users.json"
     schema = th.PropertiesList(
         th.Property("name", th.StringType),
-        th.Property(
-            # "id",
-            "private_store_id",
-            # th.StringType,
-            th.IntegerType,
-            # description="The user's system ID"
-            description="private_store_id"
-        ),
-        th.Property(
-            "domain",
-            th.StringType,
-            description="domain"
-        ),
-        th.Property(
-            "domain_alias",
-            th.StringType,
-            description="domain_alias"
-        ),
-        th.Property(
-            "country_code",
-            th.StringType,
-            description="country_code"
-        )
-        # th.Property(
-        #     "age",
-        #     th.IntegerType,
-        #     description="The user's age in years"
-        # ),
-        # th.Property(
-        #     "email",
-        #     th.StringType,
-        #     description="The user's email address"
-        # ),
-        # th.Property("street", th.StringType),
-        # th.Property("city", th.StringType),
-        # th.Property(
-        #     "state",
-        #     th.StringType,
-        #     description="State name in ISO 3166-2 format"
-        # ),
-        # th.Property("zip", th.StringType),
+        th.Property("private_store_id", th.IntegerType, description="private_store_id"),
+        th.Property("domain", th.StringType, description="domain"),
+        th.Property("domain_alias", th.StringType, description="domain_alias"),
+        th.Property("country_code", th.StringType, description="country_code")
     ).to_dict()
 
 
-# class UsersStream(netrivalsStream):
-#     """Define custom stream."""
-#     name = "users"
-#     path = "/users"
-#     primary_keys = ["id"]
-#     replication_key = None
-#     # Optionally, you may also use `schema_filepath` in place of `schema`:
-#     # schema_filepath = SCHEMAS_DIR / "users.json"
-#     schema = th.PropertiesList(
-#         th.Property("name", th.StringType),
-#         th.Property(
-#             "id",
-#             th.StringType,
-#             description="The user's system ID"
-#         ),
-#         th.Property(
-#             "age",
-#             th.IntegerType,
-#             description="The user's age in years"
-#         ),
-#         th.Property(
-#             "email",
-#             th.StringType,
-#             description="The user's email address"
-#         ),
-#         th.Property("street", th.StringType),
-#         th.Property("city", th.StringType),
-#         th.Property(
-#             "state",
-#             th.StringType,
-#             description="State name in ISO 3166-2 format"
-#         ),
-#         th.Property("zip", th.StringType),
-#     ).to_dict()
+class PrivateProductsStream(netrivalsStream):
+    name = "private_products"
+    path = r"/bi/v1/private/products"
+    primary_keys = ["private_product_id"]
+    replication_key = None
 
-
-# class GroupsStream(netrivalsStream):
-#     """Define custom stream."""
-#     name = "groups"
-#     path = "/groups"
-#     primary_keys = ["id"]
-#     replication_key = "modified"
-#     schema = th.PropertiesList(
-#         th.Property("name", th.StringType),
-#         th.Property("id", th.StringType),
-#         th.Property("modified", th.DateTimeType),
-#     ).to_dict()
+    schema = th.PropertiesList(
+        th.Property("private_product_id", th.StringType),
+        th.Property("store_id", th.IntegerType),
+        th.Property("product_id", th.StringType),
+        th.Property("country_code", th.StringType),
+        th.Property("currency", th.StringType),
+        th.Property("title", th.StringType),
+        th.Property("brand", th.StringType),
+        # th.Property("price", th.IntegerType),
+        th.Property("price", th.NumberType),
+        # th.Property("price_difference", th.IntegerType),
+        th.Property("price_difference", th.NumberType),
+        # th.Property("shipping", th.IntegerType),
+        th.Property("shipping", th.NumberType),
+        # th.Property("stock", th.IntegerType),
+        th.Property("stock", th.NumberType),
+        # th.Property("stock_quantity", th.IntegerType),
+        th.Property("stock_quantity", th.NumberType),
+        th.Property("url", th.StringType),
+        th.Property("detection_date", th.StringType),
+        th.Property("detection_timestamp", th.IntegerType),
+        th.Property("updated_date", th.StringType),
+        th.Property("updated_timestamp", th.StringType),
+        # th.Property("public_product_amount", th.IntegerType),
+        th.Property("public_product_amount", th.IntegerType),
+        # th.Property("public_product_min_price", th.IntegerType),
+        th.Property("public_product_min_price", th.NumberType),
+        # th.Property("public_product_max_price", th.IntegerType)
+        th.Property("public_product_max_price", th.NumberType)
+    ).to_dict()

@@ -9,8 +9,9 @@ from tap_netrivals.tap import Tapnetrivals
 SAMPLE_CONFIG = {
     "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
     # TODO: Initialize minimal tap config
-    "auth_token": r"$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm",
-    "project_ids": ['test']
+    # "auth_token": r"$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm",
+    "api_key": r"$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm",
+    "project_ids": ['motul_netrival']
 }
 
 

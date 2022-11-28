@@ -29,6 +29,7 @@ class netrivalsStream(RESTStream):
     #     return self.config["api_url"]
 
     records_jsonpath = "$[*]"  # Or override `parse_response`.
+    # records_jsonpath = "$.record"
     next_page_token_jsonpath = "$.next_page"  # Or override `get_next_page_token`.
 
     @property
@@ -39,7 +40,8 @@ class netrivalsStream(RESTStream):
             # key="x-api-key",
             key="api_key",
             # value=self.config.get("api_key"),
-            value=self.config.get("auth_token"),
+            # value=self.config.get("auth_token"),
+            value=self.config.get("api_key"),
             # value=r"$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm",
             # location="header"
             location="params"

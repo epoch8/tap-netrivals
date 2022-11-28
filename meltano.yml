@@ -11,8 +11,10 @@ plugins:
     - catalog
     - discover
     config:
-      start_date: '2010-01-01T00:00:00Z'
+      # start_date: '2010-01-01T00:00:00Z'
       # auth_token: '$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm'
+      api_key: '$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm'
+      # project_ids: ['motul_netrival']
     settings:
     # TODO: To configure using Meltano, declare settings and their types here:
     - name: username
@@ -20,9 +22,12 @@ plugins:
       kind: password
     - name: start_date
       value: '2010-01-01T00:00:00Z'
-    # - name: auth_token
-    #   value: '$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm'
   loaders:
   - name: target-jsonl
     variant: andyh1203
     pip_url: target-jsonl
+    config:
+      do_timestamp_file: true
+
+environments:
+- name: dev
