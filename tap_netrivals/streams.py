@@ -111,3 +111,18 @@ class ConnectionsStream(netrivalsStream):
         th.Property("connection_date", th.StringType),
         th.Property("connection_timestamp", th.StringType)
     ).to_dict()
+
+
+class PrivateHistoryProductsPriceStream(netrivalsStream):
+    name = "private_history_products_price"
+    path = r"/bi/v1/private/history/products-price"
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("date", th.StringType),
+        th.Property("price", th.IntegerType),
+        th.Property("stock", th.IntegerType),
+        th.Property("promotion", th.StringType)
+    ).to_dict()
