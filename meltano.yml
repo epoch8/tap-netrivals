@@ -29,5 +29,7 @@ plugins:
     config:
       do_timestamp_file: true
 
+default_environment: dev
+
 environments:
 - name: dev

@@ -126,3 +126,51 @@ class PrivateHistoryProductsPriceStream(netrivalsStream):
         th.Property("stock", th.IntegerType),
         th.Property("promotion", th.StringType)
     ).to_dict()
+
+
+class PrivateHistoryProductsPriceStream(netrivalsStream):
+    name = "private_history_products_price"
+    path = r"/bi/v1/private/history/products-price"
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("date", th.StringType),
+        th.Property("price", th.IntegerType),
+        th.Property("stock", th.IntegerType),
+        th.Property("promotion", th.StringType)
+    ).to_dict()
+
+
+class PublicHistoryProductsPriceStream(netrivalsStream):
+    name = "public_history_products_price"
+    path = r"/bi/v1/public/history/products-price" # bad API
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("date", th.StringType),
+        th.Property("price", th.IntegerType),
+        th.Property("stock", th.IntegerType),
+        th.Property("promotion", th.StringType),
+        th.Property("private_product_id", th.StringType)
+    ).to_dict()
+
+
+class PublicHistoryMarketplaceOffersPriceStream(netrivalsStream):
+    name = "public_history_marketplace_offers_price"
+    path = r"/bi/v1/public/history/marketplace-offers-price" # bad API
+    primary_keys = ["public_product_id", "seller_name", "date"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("seller_name", th.StringType),
+        th.Property("date", th.StringType),
+        th.Property("price", th.IntegerType),
+        th.Property("stock", th.IntegerType),
+        th.Property("offer_num", th.IntegerType),
+        th.Property("product_status", th.StringType)
+    ).to_dict()

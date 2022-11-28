@@ -8,19 +8,23 @@ from singer_sdk import typing as th  # JSON schema typing helpers
 from tap_netrivals.streams import (
     # netrivalsStream,
     # PrivateStoresStream,
-    # PrivateProductsStream,
-    # PublicProductsStream,
-    # ConnectionsStream,
-    PrivateHistoryProductsPriceStream
+    PrivateProductsStream,
+    PublicProductsStream,
+    ConnectionsStream,
+    PrivateHistoryProductsPriceStream,
+    # PublicHistoryProductsPriceStream -
+    # PublicHistoryMarketplaceOffersPriceStream -
 )
 # TODO: Compile a list of custom stream types here
 #       OR rewrite discover_streams() below with your custom logic.
 STREAM_TYPES = [
     # PrivateStoresStream,
-    # PrivateProductsStream,
-    # PublicProductsStream,
-    # ConnectionsStream,
-    PrivateHistoryProductsPriceStream
+    PrivateProductsStream,
+    PublicProductsStream,
+    ConnectionsStream,
+    PrivateHistoryProductsPriceStream,
+    # PublicHistoryProductsPriceStream -
+    # PublicHistoryMarketplaceOffersPriceStream -
 ]
 
 

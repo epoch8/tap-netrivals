@@ -75,6 +75,11 @@ class netrivalsStream(RESTStream):
     ) -> Dict[str, Any]:
         """Return a dictionary of values to be used in URL parameterization."""
         params: dict = {}
+        # params: dict = {
+        #     'stores': '172931'
+        #     # 'stores': '417062'
+        #     # 'stores': '1069771'
+        # }
         if next_page_token:
             params["page"] = next_page_token
         if self.replication_key:
@@ -95,6 +100,16 @@ class netrivalsStream(RESTStream):
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
         """Parse the response and return an iterator of result rows."""
         # TODO: Parse response body and return a set of records.
+
+        # print('=' * 100)
+        # print('=' * 100)
+        # print(response.json())
+        # print(response.text)
+        # print(response.url)
+        # print('=' * 100)
+        # print('=' * 100)
+        # raise
+
         yield from extract_jsonpath(self.records_jsonpath, input=response.json())
 
     def post_process(self, row: dict, context: Optional[dict]) -> dict:
