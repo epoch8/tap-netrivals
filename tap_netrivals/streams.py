@@ -6,6 +6,7 @@ from typing import Any, Dict, Optional, Union, List, Iterable
 from singer_sdk import typing as th  # JSON Schema typing helpers
 
 from tap_netrivals.client import netrivalsStream
+from tap_netrivals.client import netrivalsStandardStream
 
 # TODO: Delete this is if not using json files for schema definition
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
@@ -128,21 +129,6 @@ class PrivateHistoryProductsPriceStream(netrivalsStream):
     ).to_dict()
 
 
-class PrivateHistoryProductsPriceStream(netrivalsStream):
-    name = "private_history_products_price"
-    path = r"/bi/v1/private/history/products-price"
-    primary_keys = ["public_product_id"]
-    replication_key = None
-
-    schema = th.PropertiesList(
-        th.Property("public_product_id", th.StringType),
-        th.Property("date", th.StringType),
-        th.Property("price", th.IntegerType),
-        th.Property("stock", th.IntegerType),
-        th.Property("promotion", th.StringType)
-    ).to_dict()
-
-
 class PublicHistoryProductsPriceStream(netrivalsStream):
     name = "public_history_products_price"
     path = r"/bi/v1/public/history/products-price" # bad API
@@ -173,4 +159,67 @@ class PublicHistoryMarketplaceOffersPriceStream(netrivalsStream):
         th.Property("stock", th.IntegerType),
         th.Property("offer_num", th.IntegerType),
         th.Property("product_status", th.StringType)
+    ).to_dict()
+
+
+class PublicHistoryProductsScoreStream(netrivalsStream):
+    name = "public_history_products_score"
+    path = r"/bi/v1/public/history/products-score" # bad API
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("score", th.StringType),
+        th.Property("date", th.StringType)
+    ).to_dict()
+
+
+class PublicHistoryProductsCommentsStream(netrivalsStream):
+    name = "public_history_products_comments"
+    path = r"/bi/v1/public/history/products-comments" # bad API
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("comments", th.StringType),
+        th.Property("date", th.StringType)
+    ).to_dict()
+
+
+class PublicProductsMarketplaceOffersStream(netrivalsStream):
+    name = "public_products_marketplace_offers"
+    path = r"/bi/v1/public/products-marketplace-offers" # bad API
+    primary_keys = ["public_product_id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("public_product_id", th.StringType),
+        th.Property("position", th.IntegerType),
+        th.Property("offer_num", th.IntegerType),
+        th.Property("seller_id", th.StringType),
+        th.Property("seller_name", th.StringType),
+        th.Property("product_status", th.StringType),
+        th.Property("price", th.IntegerType),
+        th.Property("url", th.StringType),
+        th.Property("detection_date", th.StringType),
+        th.Property("detection_timestamp", th.IntegerType),
+        th.Property("update_date", th.StringType),
+        th.Property("update_timestamp", th.IntegerType),
+        th.Property("active", th.IntegerType)
+    ).to_dict()
+
+
+class StoresStream(netrivalsStandardStream):
+    name = "stores"
+    path = r"/v1/stores"
+    primary_keys = ["id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("id", th.StringType),
+        th.Property("name", th.StringType),
+        th.Property("country", th.StringType),
+        th.Property("total_products", th.IntegerType)
     ).to_dict()
