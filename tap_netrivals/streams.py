@@ -356,3 +356,16 @@ class ListOfRivalsStream(netrivalsStandardStream):
             )
         )
     ).to_dict()
+
+
+class RivalsMarketplacesStream(netrivalsStandardStream):
+    name = "rivals_marketplaces"
+    parent_stream_type = StoresStream
+    path = r"/v1/store/{storeId}/rivals-marketplaces"
+    primary_keys = ["id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("id", th.IntegerType),
+        th.Property("name", th.StringType)
+    ).to_dict()
