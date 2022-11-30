@@ -18,7 +18,8 @@ from tap_netrivals.streams import (
     # PublicHistoryProductsCommentsStream, # empty JSON
     # PublicProductsMarketplaceOffersStream # bad JSON
     StoresStream,
-    ListOfProductsStream
+    # ListOfProductsStream,
+    ListOfRivalsStream
 )
 # TODO: Compile a list of custom stream types here
 #       OR rewrite discover_streams() below with your custom logic.
@@ -34,7 +35,8 @@ STREAM_TYPES = [
     # PublicHistoryProductsCommentsStream, # empty JSON
     # PublicProductsMarketplaceOffersStream # bad JSON
     StoresStream,
-    ListOfProductsStream
+    # ListOfProductsStream,
+    ListOfRivalsStream
 ]
 
 
