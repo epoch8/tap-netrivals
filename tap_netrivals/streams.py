@@ -223,3 +223,114 @@ class StoresStream(netrivalsStandardStream):
         th.Property("country", th.StringType),
         th.Property("total_products", th.IntegerType)
     ).to_dict()
+
+    def get_child_context(self, record: dict, context: Optional[dict]) -> dict:
+        return {
+            "storeId": record["id"]
+        }
+
+
+class ListOfProductsStream(netrivalsStandardStream):
+    name = "list_of_products"
+    parent_stream_type = StoresStream
+    path = r"/v1/store/{storeId}/products"
+    primary_keys = ["id"]
+    replication_key = None
+
+    schema = th.PropertiesList(
+        th.Property("id", th.StringType),
+        th.Property("ref", th.StringType),
+        th.Property("ean", th.StringType),
+        th.Property("title", th.StringType),
+        th.Property("price", th.IntegerType),
+        th.Property("tax", th.IntegerType),
+        th.Property("price_status", th.StringType),
+        th.Property("price_index_average", th.IntegerType),
+        th.Property("stock", th.StringType),
+        th.Property("stock_quantity", th.IntegerType),
+        th.Property("price_margin", th.IntegerType),
+        th.Property("percent_margin", th.IntegerType),
+        th.Property("coefficient_margin", th.IntegerType),
+        th.Property("brand", th.StringType),
+        th.Property(
+            "categories",
+            th.ArrayType(th.StringType)
+        ),
+        th.Property(
+            "tags",
+            th.ArrayType(th.StringType)
+        ),
+        th.Property("rival_products_num", th.IntegerType),
+        th.Property("rival_product_min_price", th.IntegerType),
+        th.Property("rival_product_max_price", th.IntegerType),
+        th.Property("price_difference_with_cheapest_rival_product", th.IntegerType),
+        th.Property("price_percentage_difference_with_cheapest_rival_product", th.IntegerType),
+        th.Property(
+            "rival_products",
+            th.ArrayType(
+                th.ObjectType(
+                    th.Property('store_id', th.IntegerType),
+                    th.Property('name', th.StringType),
+                    th.Property('seller_name', th.StringType),
+                    th.Property('price', th.IntegerType),
+                    th.Property('strikethrough_price', th.IntegerType),
+                    th.Property('stock', th.StringType),
+                    th.Property('stock_units', th.IntegerType),
+                    th.Property('updated_date', th.StringType),
+                    th.Property('shipping', th.IntegerType),
+                    th.Property('ref', th.IntegerType),
+                    th.Property('mpn', th.StringType),
+                    th.Property(
+                        'eans',
+                        th.ArrayType(th.StringType)
+                    ),
+                    th.Property(
+                        'attributes',
+                        th.ArrayType(
+                            th.ObjectType(
+                                th.Property('group', th.StringType),
+                                th.Property('name', th.StringType),
+                                th.Property('value', th.StringType)
+                            )
+                        )
+                    )
+                )
+            )
+        ),
+        th.Property(
+            'marketplace_offers',
+            th.ArrayType(
+                th.ObjectType(
+                    th.Property('code', th.StringType),
+                    th.Property('offers', th.StringType),
+                    th.Property(
+                        'offers',
+                        th.ArrayType(
+                            th.ObjectType(
+                                th.Property('seller', th.StringType),
+                                th.Property('price', th.IntegerType),
+                                th.Property('shipping', th.IntegerType),
+                                th.Property('buy_box_winner', th.BooleanType),
+                                th.Property('stock', th.StringType),
+                                th.Property('condition', th.StringType),
+                                th.Property('date_found', th.StringType),
+                                th.Property('url', th.StringType)
+                            )
+                        )
+                    )
+                )
+            )
+        ),
+        th.Property(
+            'repricing_data',
+            th.ArrayType(
+                th.ObjectType(
+                    th.Property('suggested_price', th.StringType),
+                    th.Property('suggested_margin', th.StringType),
+                    th.Property('suggested_profit', th.StringType),
+                    th.Property('suggested_profit_max_included', th.StringType),
+                    th.Property('suggested_change', th.StringType)
+                )
+            )
+        )
+    ).to_dict()
