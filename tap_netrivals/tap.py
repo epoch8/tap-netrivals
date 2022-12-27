@@ -32,8 +32,8 @@ STREAM_TYPES = [
     PrivateHistoryProductsPriceStream,
     PublicHistoryProductsPriceStream,
     PublicHistoryMarketplaceOffersPriceStream,
-    PublicHistoryProductsScoreStream,
-    PublicHistoryProductsCommentsStream,
+    # PublicHistoryProductsScoreStream,
+    # PublicHistoryProductsCommentsStream,
     PublicProductsMarketplaceOffersStream,
     StoresStream,
     ListOfProductsStream,
@@ -49,30 +49,41 @@ class Tapnetrivals(Tap):
     # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            # "auth_token",
             "api_key",
             th.StringType,
             required=True,
             description="The token to authenticate against the API service"
         ),
-        # th.Property(
-        #     "project_ids",
-        #     th.ArrayType(th.StringType),
-        #     required=True,
-        #     description="Project IDs to replicate"
-        # ),
-        # th.Property(
-        #     "start_date",
-        #     th.DateTimeType,
-        #     description="The earliest record date to sync"
-        # ),
+        th.Property(
+            "username",
+            th.StringType,
+            required=True,
+            description="Username for Standard API"
+        ),
+        th.Property(
+            "password",
+            th.StringType,
+            required=True,
+            description="Password for Standard API"
+        ),
         th.Property(
             "api_url",
             th.StringType,
-            # default="https://api.mysample.com",
             default=r"https://endpoint.netrivals.com",
             description="The url for the API service"
         ),
+        th.Property(
+            "date_from",
+            th.StringType,
+            default=None,
+            description="Filter from date (Format Y-m-d)"
+        ),
+        th.Property(
+            "date_to",
+            th.StringType,
+            default=None,
+            description="Filter to date (Format Y-m-d)"
+        )
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:

@@ -128,6 +128,16 @@ class PrivateHistoryProductsPriceStream(netrivalsStream):
         th.Property("promotion", th.StringType)
     ).to_dict()
 
+    def get_url_params(
+        self, context: Optional[dict], next_page_token: Optional[Any]
+    ) -> Dict[str, Any]:
+        """Return a dictionary of values to be used in URL parameterization."""
+        params: dict = {
+            'date_from': self.config.get("date_from"),
+            'date_to': self.config.get("date_to")
+        }
+        return params
+
 
 class PublicHistoryProductsPriceStream(netrivalsStream):
     name = "public_history_products_price"
@@ -143,6 +153,16 @@ class PublicHistoryProductsPriceStream(netrivalsStream):
         th.Property("promotion", th.StringType),
         th.Property("private_product_id", th.StringType)
     ).to_dict()
+
+    def get_url_params(
+        self, context: Optional[dict], next_page_token: Optional[Any]
+    ) -> Dict[str, Any]:
+        """Return a dictionary of values to be used in URL parameterization."""
+        params: dict = {
+            'date_from': self.config.get("date_from"),
+            'date_to': self.config.get("date_to")
+        }
+        return params
 
 
 class PublicHistoryMarketplaceOffersPriceStream(netrivalsStream):
@@ -160,6 +180,16 @@ class PublicHistoryMarketplaceOffersPriceStream(netrivalsStream):
         th.Property("offer_num", th.IntegerType),
         th.Property("product_status", th.StringType)
     ).to_dict()
+
+    # def get_url_params(
+    #     self, context: Optional[dict], next_page_token: Optional[Any]
+    # ) -> Dict[str, Any]:
+    #     """Return a dictionary of values to be used in URL parameterization."""
+    #     params: dict = {
+    #         'date_from': self.config.get("date_from"),
+    #         'date_to': self.config.get("date_to")
+    #     }
+    #     return params
 
 
 class PublicHistoryProductsScoreStream(netrivalsStream):
