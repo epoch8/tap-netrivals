@@ -32,8 +32,8 @@ STREAM_TYPES = [
     PrivateHistoryProductsPriceStream,
     PublicHistoryProductsPriceStream,
     PublicHistoryMarketplaceOffersPriceStream,
-    # PublicHistoryProductsScoreStream,
-    # PublicHistoryProductsCommentsStream,
+    # PublicHistoryProductsScoreStream, # -
+    # PublicHistoryProductsCommentsStream, # -
     PublicProductsMarketplaceOffersStream,
     StoresStream,
     ListOfProductsStream,
