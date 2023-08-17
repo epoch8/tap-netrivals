@@ -15,8 +15,8 @@ plugins:
       api_key: '$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm'
       username: 'api@motul.com'
       password: '$2y$10$y6Uy4TVSC.g0lfHNt8iJMeEBlIorP5R1Otq4P6uXpzbvEwaW86NEm'
-      date_from: '2022-12-18'
-      date_to: '2022-12-18'
+      date_from: '2023-06-01'
+      date_to: '2023-06-01'
 
   loaders:
   - name: target-jsonl
